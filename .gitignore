@@ -1,0 +1,32 @@
+# --- Datos: SI van al repo ---
+# El dataset completo son ~43 MB y nunca cambia: es la fuente original.
+# El repo tiene que ser autocontenido — quien lo clona tiene todo lo
+# necesario para correr los notebooks, sin depender de que un repositorio
+# externo siga existiendo, publico y con la misma URL.
+# Limites de GitHub: aviso a los 50 MB por archivo, rechazo a los 100 MB.
+
+# Unica exclusion: los parquet a nivel encuesta (150.025 filas, ~44 MB).
+# No es por el tamano sino por la rotacion: se regeneran cada vez que se
+# ajusta un criterio de limpieza, y cada version seria un blob nuevo de
+# 44 MB en el historial. Se reconstruyen corriendo el notebook 02.
+data/processed/encuestas_*.parquet
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# --- Sistema operativo ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editores ---
+.vscode/
+.idea/
