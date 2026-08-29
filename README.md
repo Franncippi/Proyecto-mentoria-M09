@@ -97,10 +97,10 @@ Estimar distintos niveles de impacto de la IA y analizar qué variables tienen m
 ```
 .
 ├── notebooks/
-│   ├── 01_analisis_exploratorio.ipynb      # Práctico 1 ✅
-│   ├── 02_limpieza_y_preparacion.ipynb     # Práctico 2
-│   ├── 03_aprendizaje_no_supervisado.ipynb # Práctico 3
-│   └── 04_modelos_predictivos.ipynb        # Práctico 4
+│   ├── 01_analisis_exploratorio.ipynb            # Práctico 1 ✅
+│   ├── 02_curacion_de_datos_e_integracion.ipynb  # Práctico 2
+│   ├── 03_aprendizaje_no_supervisado.ipynb       # Práctico 3
+│   └── 04_modelos_predictivos.ipynb              # Práctico 4
 ├── practicos/           # consignas de cada entrega
 ├── data/
 │   ├── raw/             # los 3 CSV originales — NUNCA se modifican
@@ -147,7 +147,7 @@ Y listo: los datos ya vienen en `data/raw/`.
 
 ```
 data/raw/*.csv ──► 01_analisis_exploratorio    (solo lee)
-data/raw/*.csv ──► 02_limpieza_y_preparacion ──► data/processed/empresas.parquet
+data/raw/*.csv ──► 02_curacion_de_datos_e_integracion ──► data/processed/empresas.parquet
                                                         │
        ┌────────────────────────────────────────────────┘
        ├──► 03_aprendizaje_no_supervisado ──► data/processed/empresas_con_cluster.parquet
