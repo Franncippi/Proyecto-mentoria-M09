@@ -1,0 +1,11 @@
+variable,tipo,construccion,riesgo / decision
+company_age,derivada exacta,survey_year - company_founding_year,"Redundante. Conservar una sola de las tres (edad, anio de fundacion, anio de encuesta)."
+company_age_group,derivada exacta,bins de company_age,Redundante y ademas pierde informacion al discretizar.
+company_size,derivada exacta,bins de num_employees,"Redundante. Util como variable de corte para graficos, no como predictor junto a num_employees."
+ai_maturity_score,derivada exacta,(budget/25 + projects/20 + training/80)/3,COLINEALIDAD PERFECTA con sus 3 componentes. No usar junto a ellos. Sus correlaciones con ellos son circulares.
+ai_investment_per_employee,derivada (con ruido),(ai_budget_percentage x annual_revenue) / num_employees,"Ratio observado/calculado con mediana 1,0000 (§2.6). No es una medicion independiente."
+cost_reduction_percent,truncada,"piso artificial en 0,00 (>10% de las filas)",Acumulacion en un punto: rompe supuestos de continuidad y explica parte de su curtosis.
+ai_use_case,determinada por la industria,cada industria tiene un menu fijo de 4 casos,No aporta informacion propia de la empresa mas alla de su industria (§2.6a).
+df2 (todas las columnas avg_*),derivada exacta,promedios por industria calculados sobre df1,LEAKAGE si se usa como predictor: contiene el promedio del target por industria.
+ai_primary_tool,ruido,sin dependencia temporal (chi2 no rechaza independencia),No resumible a nivel empresa. Conservar solo en el panel.
+survey_source / data_collection_method,metadato,"atributo de la encuesta, no de la empresa",Utiles para trazabilidad y para chequear sesgo de fuente. No son predictores.

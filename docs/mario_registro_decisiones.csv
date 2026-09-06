@@ -1,0 +1,9 @@
+paso,accion,filas_afectadas,valores_afectados
+1.2 registros basura,eliminar filas COMP-FAKE-*,25.0,
+3.3.A recuperacion por constancia,rellenar con el valor de la propia empresa,,6747
+3.3.C recuperacion por formula,despejar la identidad de ai_maturity_score,,4438
+4.2 regla 1 (rango logico),valores imposibles -> NaN,,1074
+4.3c identidad rota,recuperar ai_training_hours despejando la formula,,152
+4.3 regla 2 (pico aislado),|z robusto por empresa| > 10 -> NaN,,764
+4.3b facturacion,reemplazar el pico por el valor estable de la empresa,,300
+5 MICE,imputacion multivariada iterativa,,10730

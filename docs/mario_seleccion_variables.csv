@@ -1,0 +1,27 @@
+variable(s),decision,motivo,justificacion
+response_id,EXCLUIR,identificador,Sin contenido informativo.
+company_id,SOLO AGRUPAR,identificador,Imprescindible para agrupar en validacion cruzada; nunca como predictor.
+survey_year / quarter,SOLO PANEL,temporal,Se pierden al agregar por empresa.
+ai_maturity_score,EXCLUIR SI SE USAN SUS COMPONENTES,derivada exacta,"Colinealidad perfecta con budget/projects/training (§2.2). Usar el indice O sus componentes, nunca ambos."
+company_age_group,EXCLUIR,derivada exacta,"Discretizacion de company_age: misma informacion, menos resolucion."
+company_size,EXCLUIR COMO PREDICTOR,derivada exacta,Bins de num_employees. Util para cortar graficos.
+company_founding_year,EXCLUIR,derivada exacta,company_age ya lo contiene.
+ai_primary_tool / ai_use_case,EXCLUIR A NIVEL EMPRESA,ruido,Sin estructura temporal (§2.5).
+survey_source / data_collection_method,EXCLUIR,metadato,"Describen la encuesta, no la empresa."
+jobs_displaced / jobs_created / reskilled_employees,EXCLUIR EN FAVOR DE LAS TASAS,escala,Conteos absolutos dominados por el tamanio. Reemplazados por tasa_* (§7.1).
+df2 (columnas avg_*),NO INTEGRADA,leakage,Promedio del target por industria (§2.3).
+country,EXCLUIR COMO PREDICTOR,alta cardinalidad,Sustituida por los 6 indicadores de df3 (§8).
+"num_employees, annual_revenue, company_age",INCLUIR,estructura,Tamanio y antiguedad: controles basicos.
+"industry, region",INCLUIR (one-hot),contexto,"Baja cardinalidad, diferencias reales entre grupos (TP1 §3.1)."
+"ai_adoption_rate, years_using_ai, num_ai_tools_used",INCLUIR,adopcion,Nucleo de las dos hipotesis.
+"ai_budget_percentage, ai_projects_active, ai_training_hours",INCLUIR,inversion,Componentes de la madurez: mas interpretables por separado que el indice.
+"ai_investment_per_employee, inversion_total_ia_estimada",EXCLUIR,derivadas,Es (ai_budget_percentage x annual_revenue) / num_employees (2.6b). Sus componentes ya estan incluidos.
+"task_automation_rate, time_saved_per_week",INCLUIR,automatizacion,Mecanismo propuesto en la Hipotesis 2.
+"ai_failure_rate, regulatory_compliance_score, ai_risk_management_score",INCLUIR,gobernanza,Sin explorar en el TP1; posibles moderadores del retorno.
+"gdp_per_capita, internet_penetration, digital_maturity_index, ...",INCLUIR,pais,Unica informacion externa del dataset (§2.4). Ojo: solo 30 valores distintos.
+"tasa_desplazamiento, tasa_creacion, saldo_neto_empleo",INCLUIR / TARGET,empleo,"Objetivo de la Hipotesis 2, ya normalizado."
+"productivity_change, revenue_growth, cost_reduction",INCLUIR / TARGET,retorno,Objetivo de la Hipotesis 1.
+indice_retorno,INCLUIR CON RESERVA,derivada,"alfa de Cronbach bajo (§7.2): util para agrupar, no para predecir."
+sd_*,EXCLUIR,ruido de medicion,"Se incluyeron argumentando que la volatilidad es informacion propia. MEDIDO en 10.6.1: fiabilidad 0,01-0,06. Se conservan en el dataset pero fuera de las features."
+tasas de cambio / rezagos,NO CONSTRUIR,ruido de medicion,"Fiabilidad medida = 0,00 (10.6). Cualquier feature temporal por empresa es error de estimacion."
+saldo_neto_empleo,TARGET CON RESERVA,fiabilidad baja,"Fiabilidad 0,33 (10.6.2): techo de R2 ~0,33. Preferible modelar tasa_creacion (0,90) y tasa_desplazamiento (0,79) por separado."
