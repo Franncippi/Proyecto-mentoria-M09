@@ -1,0 +1,12 @@
+variable,tipo_analitico,construccion
+tasa_desplazamiento,numerica_continua,jobs_displaced / num_employees * 100
+tasa_creacion,numerica_continua,jobs_created / num_employees * 100
+tasa_reentrenamiento,numerica_continua,reskilled_employees / num_employees * 100
+saldo_neto_empleo,numerica_continua,tasa_creacion - tasa_desplazamiento
+indice_retorno,numerica_continua,promedio de las 3 metricas de retorno estandarizadas
+inversion_total_ia_estimada,numerica_continua,ai_investment_per_employee * num_employees
+ratio_creacion_desplazamiento,numerica_continua,"jobs_created / jobs_displaced, acotado a 10"
+antiguedad_ia_relativa,numerica_continua,"years_using_ai / company_age, acotado a 1"
+sd_*,numerica_continua,desvio de la variable entre los trimestres de cada empresa
+imputado_*,booleana,marca si ese valor fue imputado (bloque 5)
+n_trimestres,numerica_discreta,cantidad de encuestas de esa empresa
