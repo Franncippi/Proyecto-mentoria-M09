@@ -20,7 +20,10 @@ country,EXCLUIR COMO PREDICTOR,alta cardinalidad,Sustituida por los 6 indicadore
 "ai_failure_rate, regulatory_compliance_score, ai_risk_management_score",INCLUIR,gobernanza,Sin explorar en el TP1; posibles moderadores del retorno.
 "gdp_per_capita, internet_penetration, digital_maturity_index, ...",INCLUIR,pais,Unica informacion externa del dataset (§2.4). Ojo: solo 30 valores distintos.
 "tasa_desplazamiento, tasa_creacion, saldo_neto_empleo",INCLUIR / TARGET,empleo,"Objetivo de la Hipotesis 2, ya normalizado."
-"productivity_change, revenue_growth, cost_reduction",INCLUIR / TARGET,retorno,Objetivo de la Hipotesis 1.
+"productivity_change, revenue_growth, cost_reduction",SOLO TARGET,resultado,Son consecuencias de la adopcion (11.2). Como predictores contemporaneos darian un modelo tautologico.
+"time_saved_per_week, customer_satisfaction, employee_satisfaction_score",SOLO TARGET,resultado,"Idem: describen que le paso a la empresa, no como es. Salen de la lista de predictores."
+revenue_growth_censurado,INCLUIR (auxiliar),censura,"Marca el 4% de filas apiladas en el piso de -5,00 (4.7). El target de la H1 esta censurado por abajo."
+task_automation_rate,INCLUIR CON ADVERTENCIA,cercania al target,"Correlaciona 0,91 con adopcion y esta muy cerca del target de la H2. Es la hipotesis a testear: reportar con y sin ella."
 indice_retorno,INCLUIR CON RESERVA,derivada,"alfa de Cronbach bajo (§7.2): util para agrupar, no para predecir."
 sd_*,EXCLUIR,ruido de medicion,"Se incluyeron argumentando que la volatilidad es informacion propia. MEDIDO en 10.6.1: fiabilidad 0,01-0,06. Se conservan en el dataset pero fuera de las features."
 tasas de cambio / rezagos,NO CONSTRUIR,ruido de medicion,"Fiabilidad medida = 0,00 (10.6). Cualquier feature temporal por empresa es error de estimacion."
